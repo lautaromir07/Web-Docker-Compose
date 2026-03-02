@@ -1,0 +1,298 @@
+:root {
+    --bg-dark: #0a0e14;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --accent: #00e5ff;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --gain: #00ffa3;
+    --loss: #ff4d4d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-y: auto;
+    /* Permitir desplazamiento vertical */
+    min-height: 100vh;
+}
+
+/* Glassmorphism Background */
+.background-blobs {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    filter: blur(100px);
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+}
+
+.blob-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: #7000ff;
+    bottom: -50px;
+    right: -50px;
+}
+
+/* Layout */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.pulse {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--gain);
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px var(--gain);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+}
+
+/* Charts Grid */
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-grow: 1;
+    gap: 20px;
+    min-height: 400px;
+}
+
+.glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
+    transition: transform 0.3s ease;
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chart-header h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.price-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.tv-widget {
+    flex-grow: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Bottom Panels */
+.bottom-section {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    /* Reajustado para dar más peso a las noticias */
+    min-height: 500px;
+    /* Aumentado para más visibilidad */
+    gap: 20px;
+}
+
+.box-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.dot-red {
+    width: 8px;
+    height: 8px;
+    background: #ff4d4d;
+    border-radius: 50%;
+}
+
+/* Console Logs */
+.logs-content {
+    padding: 10px 15px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #00ff55;
+    overflow-y: auto;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+}
+
+.log-entry.info {
+    color: var(--accent);
+}
+
+/* Operations Table */
+.ops-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.ops-table th {
+    text-align: left;
+    padding: 10px 15px;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.ops-table td {
+    padding: 10px 15px;
+}
+
+.badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.badge.long {
+    background: rgba(0, 255, 163, 0.1);
+    color: var(--gain);
+}
+
+.color-gain {
+    color: var(--gain);
+}
+
+.color-loss {
+    color: var(--loss);
+}
+
+/* Calendar Wrapper */
+.calendar-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+.calendar-wrapper iframe {
+    border: none;
+    filter: invert(0.9) hue-rotate(180deg) contrast(0.8);
+    /* Ajuste para Investing.com */
+    opacity: 0.85;
+}
+
+/* Sentiment Meter */
+.sentiment-container {
+    padding: 15px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.sentiment-meter {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.sentiment-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gain), var(--accent));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
