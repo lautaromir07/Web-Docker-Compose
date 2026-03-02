@@ -22,9 +22,4 @@ Este proyecto es un **clúster multi-contenedor**. No es una sola imagen, sino u
 2. **Nginx**: Balanceador de carga.
 3. **MariaDB**: Base de datos persistente.
 
-Para subirlo completo:
-- **Opción Pro**: Sube la carpeta completa con el `docker-compose.yml`.
-- **Opción Hub**: Se sube la imagen de la web al Docker Hub, y el `docker-compose.yml` se configura para descargarla desde allí.
 
----
-*Optimizado por el Experto Docker*
